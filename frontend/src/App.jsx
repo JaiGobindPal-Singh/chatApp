@@ -3,6 +3,8 @@ import Navbar from './components/Navbar.jsx'
 import {Routes,Route, Navigate} from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import SignUpPage from './pages/SignUpPage.jsx'
+import toast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import LoginPage from './pages/LoginPage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
@@ -13,7 +15,6 @@ const App = () => {
   useEffect(()=>{
     checkAuth()
   },[checkAuth])
-  console.log({authUser})
 
   //loading screen 
   if(isCheckingAuth && !authUser){
@@ -30,6 +31,8 @@ const App = () => {
           <Route path="/settings" element={<SettingsPage/>}/>
           <Route path="/profile" element={authUser?<ProfilePage/>:<Navigate to="/login"/>}/>
         </Routes>
+        
+        <Toaster/>
     </div>
   )
 }
